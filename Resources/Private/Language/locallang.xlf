@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-03-21T14:08:33Z" product-name="sfdbutf8">
+		<header/>
+		<body>
+			<trans-unit id="title" xml:space="preserve">
+				<source>DB UTF-8</source>
+			</trans-unit>
+			<trans-unit id="txt_welcome" xml:space="preserve">
+				<source>This extension touchs each table and field of the current database. So be careful. It works for me without any problems. But please: Make a database backup before you work with this extension.</source>
+			</trans-unit>
+			<trans-unit id="txt_tip" xml:space="preserve">
+				<source>To work with a UTF-8-based TYPO3-installation I prefer to set following settings with the installtool:</source>
+			</trans-unit>
+			<trans-unit id="txt_choose_charset" xml:space="preserve">
+				<source>Choose a charset to set:</source>
+			</trans-unit>
+			<trans-unit id="txt_records_found" xml:space="preserve">
+				<source> records found in database: </source>
+			</trans-unit>
+			<trans-unit id="txt_explain_page_list" xml:space="preserve">
+				<source>Here you see a list of all tables with there included fields of the current database. Red marked tables/fields are not set to your choice and can be changed with the next click on DB->UTF8.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,17 @@
+<f:layout name="Default" />
+
+<f:section name="content">
+	<h1>UTF8 Converter</h1>
+	<p><f:translate key="txt_welcome" /></p>
+	<p>&nbsp;</p>
+	<p><f:translate key="txt_tip" /></p>
+	<p>[SYS][UTF8filesystem] = 1<br />
+	[BE][forceCharset] = utf-8</p>
+	<p>&nbsp;</p>
+	<p><f:translate key="txt_choose_charset" /></p>
+
+	<f:form action="dbCheck">
+		<f:form.select name="collation" options="{collations}" size="1" />
+		<f:form.submit value="DB check" />
+	</f:form>
+</f:section>
