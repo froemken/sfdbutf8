@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
     'description' => 'With this extension you can set all tables and fields to UTF-8 collation (no converting)',
     'category' => 'be',
     'shy' => 1,
-    'version' => '1.1.0',
+    'version' => '1.2.0',
     'priority' => '',
     'loadOrder' => '',
     'module' => 'mod1',
@@ -30,13 +30,13 @@ $EM_CONF[$_EXTKEY] = array(
     'author_company' => '',
     'CGLcompliance' => '',
     'CGLcompliance_note' => '',
-    'constraints' => array(
-        'depends' => array(
-            'typo3' => '6.2.4-8.99.99',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        ),
-    ),
+    'constraints' => [
+        'depends' => [
+            'typo3' => '8.7.0-10.4.99',
+        ],
+        'conflicts' => [
+        ],
+        'suggests' => [
+        ],
+    ],
 );
