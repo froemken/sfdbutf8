@@ -8,24 +8,24 @@
 				<target>DB UTF-8</target>
 			</trans-unit>
 			<trans-unit id="txt_welcome" xml:space="preserve">
-				<source>This extension touchs each table and field of the current database. So be careful. It works for me without any problems. But please: Make a database backup before you work with this extension.</source>
-				<target>Diese Extension greift auf jede Tabelle und jedes Feld der aktuellen Datenbank zu. Also seid vorsichtig! Ich persönlich hatte keine Probleme und die Extension arbeitete hervoragend. Trotzdem: Macht bitte eine Datenbanksicherung bevor ihr mit dieser Extension arbeiten.</target>
+				<source>This extension changes the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
+				<target>Diese Extension ändert die Kollation einer jeden Tabelle und Spalte der aktuellen Datenbank (Aktuell wird nur die Default DB-Verbindung unterstützt). Bitte seid vorsichtig: Die Extension funktioniert für meine Zwecke, jedoch empfehle ich Euch: Macht bitte eine Datenbanksicherung bevor ihr mit dieser Extension arbeiten.</target>
 			</trans-unit>
 			<trans-unit id="txt_tip" xml:space="preserve">
-				<source>To work with a UTF-8-based TYPO3-installation I prefer to set following settings with the installtool:</source>
-				<target>Um mit einer UTF-8 basierten TYPO3-Installation zu arbeiten empfehle ich folgende Einstellungen im Installtool zu setzen:</target>
+				<source>To work with an UTF-8-based TYPO3-installation I prefer to set following settings with the InstallTool:</source>
+				<target>Um mit einer UTF-8 basierten TYPO3-Installation zu arbeiten, empfehle ich folgende Einstellungen im InstallTool zu setzen:</target>
 			</trans-unit>
 			<trans-unit id="txt_choose_charset" xml:space="preserve">
-				<source>Choose a charset to set:</source>
-				<target>Wählen Sie das gewünschte Charset:</target>
+				<source>Choose a Collation to set:</source>
+				<target>Wählen Sie die gewünschte Kollation:</target>
 			</trans-unit>
 			<trans-unit id="previewOfCurrentTables" xml:space="preserve">
 				<source>Preview of current tables</source>
 				<target>Vorschau aktuelle Tabellen</target>
 			</trans-unit>
 			<trans-unit id="txt_explain_page_list" xml:space="preserve">
-				<source>Here you see a list of all tables with there included fields of the current database. Red marked tables/fields are not set to your choice and can be changed with the next click on DB->UTF8.</source>
-				<target>Hier sehen Sie eine Liste ALLER Tabellen der aktuellen Datenbank. Rot markierte Tabellen sind nicht auf Ihren Auswahlwunsch umgestellt und können mit dem nächsten Klick auf DB->UTF8 entsprechend geändert werden.</target>
+				<source>Here you see a list of all tables with their included fields of the current database. Red marked tables/columns are not set to your choice and can be changed with the next click on DB->UTF8.</source>
+				<target>Hier sehen Sie eine Liste ALLER Tabellen der aktuellen Datenbank. Rot markierte Tabellen/Spalten sind nicht auf Ihren Auswahlwunsch umgestellt und können mit dem nächsten Klick auf DB->UTF8 entsprechend geändert werden.</target>
 			</trans-unit>
 		</body>
 	</file>

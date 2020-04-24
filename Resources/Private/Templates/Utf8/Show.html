@@ -14,7 +14,13 @@
 	<f:form action="dbCheck">
 		<div class="form-group">
 			<label for="collation">{f:translate(key: 'txt_choose_charset')}</label>
-			<f:form.select id="collation" class="form-control" name="collation" options="{collations}" size="1" />
+			<f:form.select id="collation"
+						   class="form-control"
+						   name="collation"
+						   options="{collations}"
+						   sortByOptionLabel="true"
+						   value="utf8_general_ci"
+						   size="1" />
 		</div>
 		<f:form.submit class="btn btn-primary" value="DB check" />
 	</f:form>

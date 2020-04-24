@@ -6,7 +6,8 @@
   "keywords": [
     "typo3",
     "TYPO3 CMS",
-    "utf"
+    "utf",
+    "utf-8"
   ],
   "homepage": "https://www.typo3lexikon.de",
   "authors": [
