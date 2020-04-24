@@ -2,7 +2,7 @@
 namespace StefanFroemken\Sfdbutf8\Controller;
 
 /*
- * This file is part of the TYPO3 CMS project.
+ * This file is part of the sfdbutf8 project.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -14,10 +14,12 @@ namespace StefanFroemken\Sfdbutf8\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
  * Class Utf8Controller
@@ -32,6 +34,19 @@ class Utf8Controller extends ActionController
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
+    protected function initializeView(ViewInterface $view)
+    {
+        $buttonBar = $this->view->getModuleTemplate()
+            ->getDocHeaderComponent()
+            ->getButtonBar();
+
+        // Bookmark
+        $shortcutButton = $buttonBar->makeShortcutButton()
+            ->setModuleName('tools_sfdbutf8')
+            ->setGetVariables(['route', 'module', 'id'])
+            ->setDisplayName('SF DB UTF-8 Module');
+        $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+    }
 
     public function showAction(): void
     {

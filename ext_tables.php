@@ -8,10 +8,12 @@ if (!defined ('TYPO3_MODE')) {
     'tools',
     'utf8convert',
     '',
-    ['Utf8' => 'show, dbCheck, convert'],
+    [
+        'Utf8' => 'show, dbCheck, convert'
+    ],
     [
         'access' => 'user,group',
-        'icon' => 'EXT:sfdbutf8/Resources/Public/Icons/module_import.svg',
+        'iconIdentifier' => 'content-widget-table',
         'labels' => 'LLL:EXT:sfdbutf8/Resources/Private/Language/locallang_mod.xlf',
     ]
 );
