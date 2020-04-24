@@ -1,7 +1,7 @@
 {
   "name": "stefanfroemken/sfdbutf8",
   "type": "typo3-cms-extension",
-  "description": "With this extension you can set all tables and fields to UTF-8 collation (no converting)",
+  "description": "With this extension you can set all tables and columns to UTF-8 collation (no converting)",
   "license": "GPL-2.0-or-later",
   "keywords": [
     "typo3",

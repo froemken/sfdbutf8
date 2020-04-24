@@ -1,0 +1,8 @@
+SF DB UTF-8
+===========
+
+About this Repository
+---------------------
+
+sfdbutf8 is a TYPO3 extension which can help you to set the Collation of
+TYPO3's default DB connection to UTF-8. Keep in mind: No converting, just set.

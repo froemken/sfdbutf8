@@ -8,8 +8,8 @@
 				<target>DB UTF-8</target>
 			</trans-unit>
 			<trans-unit id="txt_welcome" xml:space="preserve">
-				<source>This extension changes the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
-				<target>Diese Extension ändert die Kollation einer jeden Tabelle und Spalte der aktuellen Datenbank (Aktuell wird nur die Default DB-Verbindung unterstützt). Bitte seid vorsichtig: Die Extension funktioniert für meine Zwecke, jedoch empfehle ich Euch: Macht bitte eine Datenbanksicherung bevor ihr mit dieser Extension arbeiten.</target>
+				<source>This extension sets the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
+				<target>Diese Extension setzt die Kollation einer jeden Tabelle und Spalte der aktuellen Datenbank (Aktuell wird nur die Default DB-Verbindung unterstützt). Bitte seid vorsichtig: Die Extension funktioniert für meine Zwecke, jedoch empfehle ich Euch: Macht bitte eine Datenbanksicherung bevor ihr mit dieser Extension arbeiten.</target>
 			</trans-unit>
 			<trans-unit id="txt_tip" xml:space="preserve">
 				<source>To work with an UTF-8-based TYPO3-installation I prefer to set following settings with the InstallTool:</source>

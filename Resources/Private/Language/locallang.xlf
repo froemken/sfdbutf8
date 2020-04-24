@@ -7,7 +7,7 @@
 				<source>DB UTF-8</source>
 			</trans-unit>
 			<trans-unit id="txt_welcome" xml:space="preserve">
-				<source>This extension changes the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
+				<source>This extension sets the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
 			</trans-unit>
 			<trans-unit id="txt_tip" xml:space="preserve">
 				<source>To work with an UTF-8-based TYPO3-installation I prefer to set following settings with the InstallTool:</source>
