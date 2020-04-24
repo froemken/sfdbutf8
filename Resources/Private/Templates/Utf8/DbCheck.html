@@ -1,38 +1,45 @@
 <f:layout name="Default" />
 
-<f:section name="content">
+<f:section name="headline">
 	<h1>UTF8 Converter</h1>
-	<p>{numRows} <f:translate key="txt_records_found" /></p><p>&nbsp;</p>
+</f:section>
+
+<f:section name="content">
 	<p><f:translate key="txt_explain_page_list" /></p>
-	<p>&nbsp;</p>
+
 	<f:form action="convert">
 		<f:form.hidden name="collation" value="{collation}" />
-		<f:form.submit value="DB->utf8" />
+		<f:form.submit class="btn btn-primary" value="DB->utf8" />
 	</f:form>
 
-	<table border="2" cellpadding="1">
-		<thead>
-		<tr>
-			<th>Name</th>
-			<th>Engine/Type</th>
-			<th>Collation</th>
-		</tr>
-		</thead>
-		<tbody>
-		<f:for each="{tables}" as="table">
-			<tr style="background-color: {f:if(condition: '{0: collation}=={0: table.Collation}', then: '#00FF00', else: '#FF0000')};">
-				<td>{table.Name}</td>
-				<td>{table.Engine}</td>
-				<td>{table.Collation}</td>
+	<h2>{f:translate(key: 'previewOfCurrentTables')}</h2>
+	<f:for each="{tables}" as="table">
+		<h3>{table.Name}</h3>
+
+		<dl>
+			<dt>Engine</dt>
+			<dd>{table.Engine}</dd>
+			<dt>Collation</dt>
+			<dd>{table.Collation}</dd>
+		</dl>
+
+		<table class="table table-bordered">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Collation</th>
 			</tr>
-			<f:for each="{table.columns}" as="column">
-				<tr style="background-color: {f:if(condition: '{0: collation}=={0: column.Collation}', then: '#00FF00', else: '#FF0000')};">
-					<td>{column.Field}</td>
-					<td>{column.Type}</td>
-					<td>{column.Collation}</td>
-				</tr>
-			</f:for>
-		</f:for>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<f:for each="{table.columns}" as="column">
+					<tr style="background-color: {f:if(condition: '{0: collation}=={0: column.Collation}', then: '#00FF00', else: '#FF0000')};">
+						<td>{column.Field}</td>
+						<td>{column.Type}</td>
+						<td>{column.Collation}</td>
+					</tr>
+				</f:for>
+			</tbody>
+		</table>
+	</f:for>
 </f:section>

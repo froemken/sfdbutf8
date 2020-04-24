@@ -1,17 +1,21 @@
 <f:layout name="Default" />
 
-<f:section name="content">
+<f:section name="headline">
 	<h1>UTF8 Converter</h1>
-	<p><f:translate key="txt_welcome" /></p>
-	<p>&nbsp;</p>
-	<p><f:translate key="txt_tip" /></p>
-	<p>[SYS][UTF8filesystem] = 1<br />
-	[BE][forceCharset] = utf-8</p>
-	<p>&nbsp;</p>
-	<p><f:translate key="txt_choose_charset" /></p>
+</f:section>
+
+<f:section name="content">
+	<div class="alert alert-warning">
+		{f:translate(key: 'txt_welcome')}
+	</div>
+	<p>{f:translate(key: 'txt_tip')}</p>
+	<p><code>[SYS][UTF8filesystem] = 1<br>[BE][forceCharset] = utf-8</code></p>
 
 	<f:form action="dbCheck">
-		<f:form.select name="collation" options="{collations}" size="1" />
-		<f:form.submit value="DB check" />
+		<div class="form-group">
+			<label for="collation">{f:translate(key: 'txt_choose_charset')}</label>
+			<f:form.select id="collation" class="form-control" name="collation" options="{collations}" size="1" />
+		</div>
+		<f:form.submit class="btn btn-primary" value="DB check" />
 	</f:form>
 </f:section>

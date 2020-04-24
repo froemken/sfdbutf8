@@ -15,8 +15,8 @@
 			<trans-unit id="txt_choose_charset" xml:space="preserve">
 				<source>Choose a charset to set:</source>
 			</trans-unit>
-			<trans-unit id="txt_records_found" xml:space="preserve">
-				<source> records found in database: </source>
+			<trans-unit id="previewOfCurrentTables" xml:space="preserve">
+				<source>Preview of current tables</source>
 			</trans-unit>
 			<trans-unit id="txt_explain_page_list" xml:space="preserve">
 				<source>Here you see a list of all tables with there included fields of the current database. Red marked tables/fields are not set to your choice and can be changed with the next click on DB->UTF8.</source>

@@ -13,101 +13,89 @@ namespace StefanFroemken\Sfdbutf8\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use StefanFroemken\KdbXmlImport\Parser\XmlParser;
-use TYPO3\CMS\Core\Resource\Folder;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
+
+use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class Utf8Controller
- *
- * @package StefanFroemken\KdbXmlImport\Controller
  */
 class Utf8Controller extends ActionController
 {
     /**
-     * Show action
+     * The default view object to use if none of the resolved views can render
+     * a response for the current request.
      *
-     * @return void
+     * @var string
      */
-    public function showAction()
+    protected $defaultViewObjectName = BackendTemplateView::class;
+
+
+    public function showAction(): void
     {
-        $collations = array();
-        $res = $this->getDatabaseConnection()->sql_query('SHOW COLLATION WHERE Charset="utf8"');
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
+        $collations = [];
+        $connection = $this->getConnectionPool()->getConnectionByName('Default');
+        $statement = $connection->query('SHOW COLLATION WHERE Charset="utf8"');
+        while ($row = $statement->fetch()) {
             $collations[$row['Collation']] = $row['Collation'];
         }
         $this->view->assign('collations', $collations);
     }
-    
-    /**
-     * DB check action
-     *
-     * @param string $collation
-     *
-     * @return void
-     */
-    public function dbCheckAction($collation)
+
+    public function dbCheckAction(string $collation): void
     {
-        //show all tables with additional settings
-        $res = $this->getDatabaseConnection()->sql_query('SHOW TABLE STATUS');
-        $this->view->assign('numRows', $this->getDatabaseConnection()->sql_num_rows($res));
-    
-        $tables = array();
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
-            $tables[] = $row;
-        }
-        
-        foreach ($tables as $key => $table) {
-            $res = $this->getDatabaseConnection()->sql_query('SHOW FULL COLUMNS FROM ' . $table['Name'] . ' WHERE Collation <> \'\'');
-            while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
-                $tables[$key]['columns'][] = $row;
+        // show all tables with additional settings
+        $connection = $this->getConnectionPool()->getConnectionByName('Default');
+        $tableStatement = $connection->query('SHOW TABLE STATUS');
+
+        $tables = [];
+        while ($table = $tableStatement->fetch()) {
+            $columnStatement = $connection->query('SHOW FULL COLUMNS FROM ' . $table['Name'] . ' WHERE Collation <> \'\'');
+            while ($column = $columnStatement->fetch()) {
+                $table['columns'][] = $column;
             }
+            $tables[] = $table;
         }
-    
+
         $this->view->assign('collation', $collation);
         $this->view->assign('tables', $tables);
     }
-    
-    /**
-     * convert action
-     *
-     * @param string $collation
-     *
-     * @return void
-     */
-    public function convertAction($collation)
+
+    public function convertAction(string $collation): void
     {
-        $res = $this->getDatabaseConnection()->sql_query('SHOW TABLE STATUS');
-        while ($row = $this->getDatabaseConnection()->sql_fetch_assoc($res)) {
-            if ($collation != $row['Collation']) {
-                $this->getDatabaseConnection()->sql_query('
-                    ALTER TABLE ' . $row['Name'] . '
-                    ENGINE=' . $row['Engine'] . ', DEFAULT CHARSET=utf8, COLLATE ' . $collation
-                );
+        // show all tables with additional settings
+        $connection = $this->getConnectionPool()->getConnectionByName('Default');
+        $statement = $connection->query('SHOW TABLE STATUS');
+
+        while ($table = $statement->fetch()) {
+            if ($collation !== $table['Collation']) {
+                $connection->query('
+                    ALTER TABLE ' . $table['Name'] . '
+                    ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=utf8, COLLATE ' . $collation
+                )->execute();
             }
-            $res1 = $this->getDatabaseConnection()->sql_query('
+            $columnStatement = $connection->query('
                 SHOW FULL COLUMNS
-                FROM ' . $row['Name'] . '
+                FROM ' . $table['Name'] . '
                 WHERE Collation <> \'\'
             ');
-            while ($row1 = $this->getDatabaseConnection()->sql_fetch_assoc($res1)) {
-                if ($row1['Default']) {
-                    $default = ' DEFAULT \'' . $row1['Default'] . '\'';
+            while ($column = $columnStatement->fetch()) {
+                if ($column['Default']) {
+                    $default = ' DEFAULT \'' . $column['Default'] . '\'';
                 } else {
                     $default = '';
                 }
-                if ($row1['Null']=='NO') {
+                if ($column['Null'] === 'NO') {
                     $null = ' NOT NULL';
                 } else {
                     $null = '';
                 }
-                if ($collation != $row1['Collation']) {
-                    $this->getDatabaseConnection()->sql_query('
-                        ALTER TABLE ' . $row['Name'] . '
-                        CHANGE ' . $row1['Field'] . ' ' . $row1['Field'] . ' ' . $row1['Type'] . '
+                if ($collation !== $column['Collation']) {
+                    $connection->query('
+                        ALTER TABLE ' . $table['Name'] . '
+                        CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . '
                         CHARACTER SET utf8
                         COLLATE ' . $collation .
                         $default . $null
@@ -117,14 +105,9 @@ class Utf8Controller extends ActionController
         }
         $this->redirect('show');
     }
-    
-    /**
-     * Get TYPO3s Database Connection
-     *
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
+
+    protected function getConnectionPool(): ConnectionPool
     {
-        return $GLOBALS['TYPO3_DB'];
+        return GeneralUtility::makeInstance(ConnectionPool::class);
     }
 }
