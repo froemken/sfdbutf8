@@ -59,6 +59,9 @@ class Utf8Controller extends ActionController
         $this->view->assign('collations', $collations);
     }
 
+    /**
+     * @param string $collation
+     */
     public function dbCheckAction(string $collation): void
     {
         // show all tables with additional settings
@@ -78,6 +81,9 @@ class Utf8Controller extends ActionController
         $this->view->assign('tables', $tables);
     }
 
+    /**
+     * @param string $collation
+     */
     public function convertAction(string $collation): void
     {
         // show all tables with additional settings
