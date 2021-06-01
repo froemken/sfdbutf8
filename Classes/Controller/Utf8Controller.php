@@ -1,18 +1,15 @@
 <?php
-namespace StefanFroemken\Sfdbutf8\Controller;
+
+declare(strict_types=1);
 
 /*
- * This file is part of the sfdbutf8 project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
+ * This file is part of the package jweiland/schooldirectory.
  *
  * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
+ * LICENSE file that was distributed with this source code.
  */
+
+namespace StefanFroemken\Sfdbutf8\Controller;
 
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
@@ -34,7 +31,7 @@ class Utf8Controller extends ActionController
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    protected function initializeView(ViewInterface $view)
+    protected function initializeView(ViewInterface $view): void
     {
         $buttonBar = $this->view->getModuleTemplate()
             ->getDocHeaderComponent()
