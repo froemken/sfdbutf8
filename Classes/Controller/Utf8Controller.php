@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the package jweiland/schooldirectory.
+ * This file is part of the package stefanfroemken/sfdbutf8.
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
@@ -89,16 +89,18 @@ class Utf8Controller extends ActionController
 
         while ($table = $statement->fetch()) {
             if ($collation !== $table['Collation']) {
-                $connection->query('
-                    ALTER TABLE ' . $table['Name'] . '
-                    ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=utf8, COLLATE ' . $collation
-                )->execute();
+                $connection
+                    ->query(
+                        'ALTER TABLE ' . $table['Name'] . '
+                        ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=utf8, COLLATE ' . $collation
+                    )
+                    ->execute();
             }
-            $columnStatement = $connection->query('
-                SHOW FULL COLUMNS
+            $columnStatement = $connection->query(
+                'SHOW FULL COLUMNS
                 FROM ' . $table['Name'] . '
-                WHERE Collation <> \'\'
-            ');
+                WHERE Collation <> \'\''
+            );
             while ($column = $columnStatement->fetch()) {
                 if ($column['Default']) {
                     $default = ' DEFAULT \'' . $column['Default'] . '\'';
