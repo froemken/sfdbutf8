@@ -113,8 +113,8 @@ class Utf8Controller extends ActionController
                     $null = '';
                 }
                 if ($collation !== $column['Collation']) {
-                    $connection->query('
-                        ALTER TABLE ' . $table['Name'] . '
+                    $connection->query(
+                        'ALTER TABLE ' . $table['Name'] . '
                         CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . '
                         CHARACTER SET utf8
                         COLLATE ' . $collation .
