@@ -23,10 +23,11 @@
 		"source": "https://github.com/froemken/sfdbutf8"
 	},
 	"require": {
-		"typo3/cms-core": "^8.7 || ^9.5 || ^10.4"
+		"typo3/cms-core": "^8.7.32 || ^9.5.25 || ^10.4.14"
 	},
 	"require-dev": {
-		"roave/security-advisories": "dev-latest"
+		"roave/security-advisories": "dev-latest",
+		"friendsofphp/php-cs-fixer": "^2.16"
 	},
 	"autoload": {
 		"psr-4": {
