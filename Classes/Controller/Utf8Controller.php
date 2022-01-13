@@ -49,7 +49,7 @@ class Utf8Controller extends ActionController
     {
         $collations = [];
         $connection = $this->getConnectionPool()->getConnectionByName('Default');
-        $statement = $connection->query('SHOW COLLATION WHERE Charset="utf8"');
+        $statement = $connection->query('SHOW COLLATION WHERE Charset like "utf8%"');
         while ($row = $statement->fetch()) {
             $collations[$row['Collation']] = $row['Collation'];
         }
