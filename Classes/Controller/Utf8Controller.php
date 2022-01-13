@@ -86,13 +86,14 @@ class Utf8Controller extends ActionController
         // show all tables with additional settings
         $connection = $this->getConnectionPool()->getConnectionByName('Default');
         $statement = $connection->query('SHOW TABLE STATUS');
+        [$charset] = explode('_', $collation);
 
         while ($table = $statement->fetch()) {
             if ($collation !== $table['Collation']) {
                 $connection
                     ->query(
                         'ALTER TABLE ' . $table['Name'] . '
-                        ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=utf8, COLLATE ' . $collation
+                        ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=' . $charset . ', COLLATE ' . $collation
                     )
                     ->execute();
             }
@@ -116,7 +117,7 @@ class Utf8Controller extends ActionController
                     $connection->query(
                         'ALTER TABLE ' . $table['Name'] . '
                         CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . '
-                        CHARACTER SET utf8
+                        CHARACTER SET ' . $charset . '
                         COLLATE ' . $collation .
                         $default . $null
                     );
