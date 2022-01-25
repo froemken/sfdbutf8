@@ -13,7 +13,7 @@ if (!defined ('TYPO3_MODE')) {
     ],
     [
         'access' => 'user,group',
-        'iconIdentifier' => 'content-widget-table',
+        'iconIdentifier' => 'sfdbutf8-backend-module',
         'labels' => 'LLL:EXT:sfdbutf8/Resources/Private/Language/locallang_mod.xlf',
     ]
 );
