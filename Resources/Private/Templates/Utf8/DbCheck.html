@@ -15,7 +15,10 @@
 	</f:form>
 
 	<h2>{f:translate(key: 'previewOfCurrentTables')}</h2>
+
 	<f:for each="{tables}" as="table">
+		<f:variable name="bgClass">{f:if(condition: '{collation}=={column.Collation}', then: 'bg-success', else: 'bg-danger')}</f:variable>
+
 		<h3>{table.Name}</h3>
 
 		<dl>
@@ -25,7 +28,7 @@
 			<dd>{table.Collation}</dd>
 		</dl>
 
-		<table class="table table-bordered">
+		<table class="table table-bordered table-hover">
 			<thead>
 			<tr>
 				<th>Name</th>
@@ -35,10 +38,10 @@
 			</thead>
 			<tbody>
 				<f:for each="{table.columns}" as="column">
-					<tr class="{f:if(condition: '{collation}=={column.Collation}', then: 'bg-success', else: 'bg-danger')}">
-						<td>{column.Field}</td>
-						<td>{column.Type}</td>
-						<td>{column.Collation}</td>
+					<tr class="{bgClass}">
+						<td class="{bgClass}">{column.Field}</td>
+						<td class="{bgClass}">{column.Type}</td>
+						<td class="{bgClass}">{column.Collation}</td>
 					</tr>
 				</f:for>
 			</tbody>
