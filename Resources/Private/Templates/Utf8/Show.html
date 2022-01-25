@@ -1,18 +1,15 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-			data-namespace-typo3-fluid="true">
+<html lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="headline">
-	<h1>UTF8 Converter</h1>
+	<h1>{f:translate(key: 'txt_header')}</h1>
 </f:section>
 
 <f:section name="content">
-	<div class="alert alert-warning">
-		{f:translate(key: 'txt_welcome')}
-	</div>
-	<p>{f:translate(key: 'txt_tip')}</p>
-	<p><code>[SYS][UTF8filesystem] = 1<br>[BE][forceCharset] = utf-8</code></p>
+	<p>{f:translate(key: 'txt_welcome')}</p>
 
 	<f:form action="dbCheck">
 		<div class="form-group">
@@ -25,7 +22,8 @@
 						   value="utf8_general_ci"
 						   size="1" />
 		</div>
-		<f:form.submit class="btn btn-primary" value="DB check" />
+
+		<f:form.submit class="btn btn-primary" value="{f:translate(key: 'txt_check_db')}" />
 	</f:form>
 </f:section>
 </html>

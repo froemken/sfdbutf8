@@ -6,20 +6,23 @@
 			<trans-unit id="title" xml:space="preserve">
 				<source>DB UTF-8</source>
 			</trans-unit>
-			<trans-unit id="txt_welcome" xml:space="preserve">
-				<source>This extension sets the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
+			<trans-unit id="txt_header" xml:space="preserve">
+				<source>Change DB Collation</source>
 			</trans-unit>
-			<trans-unit id="txt_tip" xml:space="preserve">
-				<source>To work with an UTF-8-based TYPO3-installation I prefer to set following settings with the InstallTool:</source>
+			<trans-unit id="txt_welcome" xml:space="preserve">
+				<source>This extension changes the collation of each table and column of the current database. There is no conversion of the contained records! Please create a database backup before changing the collation.</source>
 			</trans-unit>
 			<trans-unit id="txt_choose_charset" xml:space="preserve">
-				<source>Choose a Collation to set:</source>
+				<source>To which collation should the tables and columns be changed?</source>
+			</trans-unit>
+			<trans-unit id="txt_check_db" xml:space="preserve">
+				<source>Check tables and columns collation</source>
+			</trans-unit>
+			<trans-unit id="btn_convert" xml:space="preserve">
+				<source>Change collation to: %s</source>
 			</trans-unit>
 			<trans-unit id="previewOfCurrentTables" xml:space="preserve">
-				<source>Preview of current tables</source>
-			</trans-unit>
-			<trans-unit id="txt_explain_page_list" xml:space="preserve">
-				<source>Here you see a list of all tables with their included fields of the current database. Red marked tables/columns are not set to your choice and can be changed with the next click on DB->UTF8.</source>
+				<source>Preview of tables and columns against the selected collation</source>
 			</trans-unit>
 		</body>
 	</file>

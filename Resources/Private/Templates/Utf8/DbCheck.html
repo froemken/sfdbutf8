@@ -1,18 +1,17 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-			data-namespace-typo3-fluid="true">
+<html lang="en"
+	  xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	  data-namespace-typo3-fluid="true">
 
 <f:layout name="Default" />
 
 <f:section name="headline">
-	<h1>UTF8 Converter</h1>
+	<h1>{f:translate(key: 'txt_header')}</h1>
 </f:section>
 
 <f:section name="content">
-	<p>{f:translate(key: 'txt_explain_page_list')}</p>
-
 	<f:form action="convert">
 		<f:form.hidden name="collation" value="{collation}" />
-		<f:form.submit class="btn btn-primary" value="DB->utf8" />
+		<f:form.submit class="btn btn-primary" value="{f:translate(key: 'btn_convert', arguments: {0: collation})}" />
 	</f:form>
 
 	<h2>{f:translate(key: 'previewOfCurrentTables')}</h2>
@@ -36,7 +35,7 @@
 			</thead>
 			<tbody>
 				<f:for each="{table.columns}" as="column">
-					<tr style="background-color: {f:if(condition: '{0: collation}=={0: column.Collation}', then: '#00FF00', else: '#FF0000')};">
+					<tr class="{f:if(condition: '{collation}=={column.Collation}', then: 'bg-success', else: 'bg-danger')}">
 						<td>{column.Field}</td>
 						<td>{column.Type}</td>
 						<td>{column.Collation}</td>
