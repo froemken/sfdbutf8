@@ -1,7 +1,7 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'DB_UTF8',
+    'title' => 'Alter DB to UTF-8',
     'description' => 'With this extension you can set all tables and columns to UTF-8 collation (no converting)',
     'category' => 'be',
     'version' => '2.0.0',
