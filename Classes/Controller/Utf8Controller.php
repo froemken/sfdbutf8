@@ -19,7 +19,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 
 /**
- * Class Utf8Controller
+ * Controller to alter collation of database tables and columns
  */
 class Utf8Controller extends ActionController
 {
@@ -56,9 +56,6 @@ class Utf8Controller extends ActionController
         $this->view->assign('collations', $collations);
     }
 
-    /**
-     * @param string $collation
-     */
     public function dbCheckAction(string $collation): void
     {
         // show all tables with additional settings
@@ -78,9 +75,6 @@ class Utf8Controller extends ActionController
         $this->view->assign('tables', $tables);
     }
 
-    /**
-     * @param string $collation
-     */
     public function convertAction(string $collation): void
     {
         // show all tables with additional settings
@@ -102,17 +96,18 @@ class Utf8Controller extends ActionController
                 FROM ' . $table['Name'] . '
                 WHERE Collation <> \'\''
             );
+
             while ($column = $columnStatement->fetch()) {
+                $default = '';
                 if ($column['Default']) {
                     $default = ' DEFAULT \'' . $column['Default'] . '\'';
-                } else {
-                    $default = '';
                 }
+
+                $null = '';
                 if ($column['Null'] === 'NO') {
                     $null = ' NOT NULL';
-                } else {
-                    $null = '';
                 }
+
                 if ($collation !== $column['Collation']) {
                     $connection->query(
                         'ALTER TABLE ' . $table['Name'] . '
@@ -124,6 +119,7 @@ class Utf8Controller extends ActionController
                 }
             }
         }
+
         $this->redirect('show');
     }
 

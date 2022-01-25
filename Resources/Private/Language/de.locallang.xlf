@@ -7,25 +7,29 @@
 				<source>DB UTF-8</source>
 				<target>DB UTF-8</target>
 			</trans-unit>
-			<trans-unit id="txt_welcome" xml:space="preserve">
-				<source>This extension sets the Collation of each table and column of the current database (Currently only Default Connection was supported). So be careful: It works for me without any problems, but please: Make a database backup before you work with this extension.</source>
-				<target>Diese Extension setzt die Kollation einer jeden Tabelle und Spalte der aktuellen Datenbank (Aktuell wird nur die Default DB-Verbindung unterstützt). Bitte seid vorsichtig: Die Extension funktioniert für meine Zwecke, jedoch empfehle ich Euch: Macht bitte eine Datenbanksicherung bevor ihr mit dieser Extension arbeiten.</target>
+			<trans-unit id="txt_header" xml:space="preserve">
+				<source>Change DB Collation</source>
+				<target>Ändern der DB Kollation</target>
 			</trans-unit>
-			<trans-unit id="txt_tip" xml:space="preserve">
-				<source>To work with an UTF-8-based TYPO3-installation I prefer to set following settings with the InstallTool:</source>
-				<target>Um mit einer UTF-8 basierten TYPO3-Installation zu arbeiten, empfehle ich folgende Einstellungen im InstallTool zu setzen:</target>
+			<trans-unit id="txt_welcome" xml:space="preserve">
+				<source>This extension changes the collation of each table and column of the current database. There is no conversion of the contained records! Please create a database backup before changing the collation.</source>
+				<target>Diese Extension ändert die Kollation einer jeden Tabelle und Spalte der aktuellen Datenbank. Es findet keine Konvertierung der enthaltenen Datensätze statt! Bitte erstellt vor Änderung der Kollation eine Datenbanksicherung.</target>
 			</trans-unit>
 			<trans-unit id="txt_choose_charset" xml:space="preserve">
-				<source>Choose a Collation to set:</source>
-				<target>Wählen Sie die gewünschte Kollation:</target>
+				<source>To which collation should the tables and columns be changed?</source>
+				<target>In welche Kollation sollen die Tabellen und Spalten geändert werden?</target>
+			</trans-unit>
+			<trans-unit id="txt_check_db" xml:space="preserve">
+				<source>Check tables and columns collation</source>
+				<target>Prüfe Tabellen und Spalten Kollation</target>
+			</trans-unit>
+			<trans-unit id="btn_convert" xml:space="preserve">
+				<source>Change collation to: %s</source>
+				<target>Ändere Kollation auf: %s</target>
 			</trans-unit>
 			<trans-unit id="previewOfCurrentTables" xml:space="preserve">
-				<source>Preview of current tables</source>
-				<target>Vorschau aktuelle Tabellen</target>
-			</trans-unit>
-			<trans-unit id="txt_explain_page_list" xml:space="preserve">
-				<source>Here you see a list of all tables with their included fields of the current database. Red marked tables/columns are not set to your choice and can be changed with the next click on DB->UTF8.</source>
-				<target>Hier sehen Sie eine Liste ALLER Tabellen der aktuellen Datenbank. Rot markierte Tabellen/Spalten sind nicht auf Ihren Auswahlwunsch umgestellt und können mit dem nächsten Klick auf DB->UTF8 entsprechend geändert werden.</target>
+				<source>Preview of tables and columns against the selected collation</source>
+				<target>Vorschau der Tabellen und Spalten gegenüber der gewählten Kollation</target>
 			</trans-unit>
 		</body>
 	</file>
