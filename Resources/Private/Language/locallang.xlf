@@ -24,6 +24,13 @@
 			<trans-unit id="previewOfCurrentTables" xml:space="preserve">
 				<source>Preview of tables and columns against the selected collation</source>
 			</trans-unit>
+
+			<trans-unit id="messageChangeSuccessful.title" xml:space="preserve">
+				<source>Collation changed successfully</source>
+			</trans-unit>
+			<trans-unit id="messageChangeSuccessful.description" xml:space="preserve">
+				<source>All database tables and columns were successfully changed to the new collation "%s".</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

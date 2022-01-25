@@ -31,6 +31,15 @@
 				<source>Preview of tables and columns against the selected collation</source>
 				<target>Vorschau der Tabellen und Spalten gegenüber der gewählten Kollation</target>
 			</trans-unit>
+
+			<trans-unit id="messageChangeSuccessful.title" xml:space="preserve">
+				<source>Collation changed successfully</source>
+				<target>Kollation erfolgreich geändert</target>
+			</trans-unit>
+			<trans-unit id="messageChangeSuccessful.description" xml:space="preserve">
+				<source>All database tables and columns were successfully changed to the new collation "%s".</source>
+				<target>Alle Datenbank Tabellen und Spalten wurden erfolgreich auf die neue Kollation "%s" geändert.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
