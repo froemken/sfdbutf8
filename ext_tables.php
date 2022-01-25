@@ -4,12 +4,12 @@ if (!defined ('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-    'StefanFroemken.sfdbutf8',
+    'Sfdbutf8',
     'tools',
     'utf8convert',
     '',
     [
-        'Utf8' => 'show, dbCheck, convert'
+        \StefanFroemken\Sfdbutf8\Controller\Utf8Controller::class => 'show, dbCheck, convert'
     ],
     [
         'access' => 'user,group',
