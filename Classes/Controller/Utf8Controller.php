@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Controller to alter collation of database tables and columns
@@ -119,6 +120,11 @@ class Utf8Controller extends ActionController
                 }
             }
         }
+
+        $this->addFlashMessage(
+            LocalizationUtility::translate('messageChangeSuccessful.description', 'sfdbutf8', [$collation]),
+            LocalizationUtility::translate('messageChangeSuccessful.title', 'sfdbutf8', [$collation])
+        );
 
         $this->redirect('show');
     }
