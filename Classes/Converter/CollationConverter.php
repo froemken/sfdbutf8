@@ -181,7 +181,7 @@ class CollationConverter
         if (array_key_exists($tableName, $alterStatements)) {
             $amountOfTables = count($alterStatements[$tableName]);
             foreach ($alterStatements[$tableName] as $alterStatementForTable) {
-                $this->connection->executeQuery($alterStatementForTable);
+                $this->connection->query($alterStatementForTable);
             }
         }
 

@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace StefanFroemken\Sfdbutf8\Controller;
 
+use StefanFroemken\Sfdbutf8\Converter\CollationConverter;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -78,48 +79,8 @@ class Utf8Controller extends ActionController
 
     public function convertAction(string $collation): void
     {
-        // show all tables with additional settings
-        $connection = $this->getConnectionPool()->getConnectionByName('Default');
-        $statement = $connection->query('SHOW TABLE STATUS');
-        [$charset] = explode('_', $collation);
-
-        while ($table = $statement->fetch()) {
-            if ($collation !== $table['Collation']) {
-                $connection
-                    ->query(
-                        'ALTER TABLE ' . $table['Name'] . '
-                        ENGINE=' . $table['Engine'] . ', DEFAULT CHARSET=' . $charset . ', COLLATE ' . $collation
-                    )
-                    ->execute();
-            }
-            $columnStatement = $connection->query(
-                'SHOW FULL COLUMNS
-                FROM ' . $table['Name'] . '
-                WHERE Collation <> \'\''
-            );
-
-            while ($column = $columnStatement->fetch()) {
-                $default = '';
-                if ($column['Default']) {
-                    $default = ' DEFAULT \'' . $column['Default'] . '\'';
-                }
-
-                $null = '';
-                if ($column['Null'] === 'NO') {
-                    $null = ' NOT NULL';
-                }
-
-                if ($collation !== $column['Collation']) {
-                    $connection->query(
-                        'ALTER TABLE ' . $table['Name'] . '
-                        CHANGE ' . $column['Field'] . ' ' . $column['Field'] . ' ' . $column['Type'] . '
-                        CHARACTER SET ' . $charset . '
-                        COLLATE ' . $collation .
-                        $default . $null
-                    );
-                }
-            }
-        }
+        $collationConverter = $this->getCollationConverter();
+        $collationConverter->convert($collation);
 
         $this->addFlashMessage(
             LocalizationUtility::translate('messageChangeSuccessful.description', 'sfdbutf8', [$collation]),
@@ -127,6 +88,11 @@ class Utf8Controller extends ActionController
         );
 
         $this->redirect('show');
+    }
+
+    protected function getCollationConverter(): CollationConverter
+    {
+        return GeneralUtility::makeInstance(CollationConverter::class);
     }
 
     protected function getConnectionPool(): ConnectionPool
