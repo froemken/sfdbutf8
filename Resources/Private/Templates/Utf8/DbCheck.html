@@ -17,7 +17,6 @@
 	<h2>{f:translate(key: 'previewOfCurrentTables')}</h2>
 
 	<f:for each="{tables}" as="table">
-		<f:variable name="bgClass">{f:if(condition: '{collation}=={column.Collation}', then: 'bg-success', else: 'bg-danger')}</f:variable>
 
 		<h3>{table.Name}</h3>
 
@@ -38,6 +37,8 @@
 			</thead>
 			<tbody>
 				<f:for each="{table.columns}" as="column">
+					<f:variable name="bgClass">{f:if(condition: '{collation}=={column.Collation}', then: 'bg-success', else: 'bg-danger')}</f:variable>
+
 					<tr class="{bgClass}">
 						<td class="{bgClass}">{column.Field}</td>
 						<td class="{bgClass}">{column.Type}</td>
