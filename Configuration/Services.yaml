@@ -6,3 +6,18 @@ services:
 
   StefanFroemken\Sfdbutf8\:
     resource: '../Classes/*'
+
+  # Called by makeInstance in CollationConverter
+  StefanFroemken\Sfdbutf8\EventListener\SchemaAlterTableListener:
+    public: true
+
+  # Called by makeInstance in ConvertCollationCommand
+  StefanFroemken\Sfdbutf8\Converter\CollationConverter:
+    public: true
+
+  StefanFroemken\Sfdbutf8\Command\ConvertCollationCommand:
+    tags:
+    - name: 'console.command'
+      command: 'sfdbutf8:convertCollation'
+      schedulable: false
+      description: 'Convert collation of tables and columns to a specified collation'
