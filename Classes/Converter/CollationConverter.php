@@ -14,7 +14,6 @@ namespace StefanFroemken\Sfdbutf8\Converter;
 use Doctrine\Common\EventManager;
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Events;
-use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column;
@@ -99,7 +98,7 @@ class CollationConverter
      * Main method which will search for different collation in table options
      * and executes the ALTER statements for each table and column
      *
-     * @throws Exception
+     * @throws DBALException
      */
     public function convert(string $collation, bool $executeStatements = true): void
     {
@@ -144,7 +143,7 @@ class CollationConverter
     }
 
     /**
-     * @throws Exception
+     * @throws DBALException
      */
     protected function compareAndExecuteAlterStatements(): void
     {
@@ -167,7 +166,7 @@ class CollationConverter
     /**
      * Useful, if you want to execute ALTER table by table. See ConvertCollationCommand
      *
-     * @throws Exception
+     * @throws DBALException
      */
     public function executeAlterStatementsForTable(string $tableName): int
     {
@@ -301,7 +300,7 @@ class CollationConverter
                 0,
                 $table->getOptions()
             );
-        } catch (Exception $exception) {
+        } catch (DBALException $exception) {
             return null;
         }
     }
@@ -343,7 +342,7 @@ class CollationConverter
     {
         try {
             return $this->getConnectionPool()->getConnectionForTable($table);
-        } catch (\Doctrine\DBAL\Exception $exception) {
+        } catch (DBALException $DBALException) {
             throw new \InvalidArgumentException(
                 'Could not get connection for table ' . $table . '. Maybe table does not exists'
             );

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace StefanFroemken\Sfdbutf8\Command;
 
-use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\DBALException;
 use StefanFroemken\Sfdbutf8\Converter\CollationConverter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -53,8 +53,8 @@ class ConvertCollationCommand extends Command
         $collationConverter = $this->getCollationConverter();
         try {
             $collationConverter->convert($input->getArgument('collation'), false);
-        } catch (Exception $exception) {
-            // Do nothing. We call convert() with false which does not executes any exception
+        } catch (DBALException $DBALException) {
+            // Do nothing. We call convert() with false which does not execute any exception
         }
 
         ProgressBar::setFormatDefinition(
@@ -68,8 +68,8 @@ class ConvertCollationCommand extends Command
             try {
                 $progressBar->setMessage($tableName, 'tablename');
                 $collationConverter->executeAlterStatementsForTable($tableName);
-            } catch (Exception $exception) {
-                $output->writeln('Altering table' . $tableName . ' fails. Error: ' . $exception->getMessage());
+            } catch (DBALException $DBALException) {
+                $output->writeln('Altering table' . $tableName . ' fails. Error: ' . $DBALException->getMessage());
             }
         }
 
